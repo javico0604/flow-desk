@@ -1,0 +1,229 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  email    String @unique
+  password String
+  name     String
+
+  refreshTokens RefreshToken[]
+
+  projects Project[]
+
+  memberships ProjectMember[]
+
+  createdIssues Issue[] @relation("IssueCreator")
+
+  assignedIssues Issue[] @relation("IssueAssignee")
+
+  comments Comment[]
+
+  activities Activity[]
+
+  notifications Notification[]
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String
+  expiresAt DateTime
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+
+  name        String
+  description String?
+
+  ownerId Int
+
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  members ProjectMember[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  boards Board[]
+
+  issues Issue[]
+}
+
+enum ProjectRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model BoardColumn {
+  id       Int    @id @default(autoincrement())
+  name     String
+  position Int
+
+  boardId Int
+  board   Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issues Issue[]
+}
+
+model ProjectMember {
+  id Int @id @default(autoincrement())
+
+  userId    Int
+  projectId Int
+
+  role ProjectRole @default(MEMBER)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, projectId])
+}
+
+model Board {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  projectId Int
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  columns BoardColumn[]
+
+  issues Issue[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model Issue {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+
+  priority IssuePriority @default(MEDIUM)
+
+  position Int
+
+  projectId Int
+  boardId   Int
+  columnId  Int
+
+  creatorId  Int
+  assigneeId Int?
+
+  project Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  board   Board       @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  column  BoardColumn @relation(fields: [columnId], references: [id], onDelete: Cascade)
+
+  creator  User  @relation("IssueCreator", fields: [creatorId], references: [id])
+  assignee User? @relation("IssueAssignee", fields: [assigneeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comments Comment[]
+
+  activities Activity[]
+
+  labels Label[]
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+
+  content String
+
+  issueId Int
+  userId  Int
+
+  issue Issue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Activity {
+
+  id Int @id @default(autoincrement())
+
+  action ActivityType
+
+  metadata Json?
+
+  issueId Int
+  userId Int
+
+  issue Issue @relation(fields:[issueId], references:[id], onDelete:Cascade)
+
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+enum ActivityType {
+  ISSUE_CREATED
+  ISSUE_UPDATED
+  ISSUE_MOVED
+  ISSUE_ASSIGNED
+  ISSUE_DELETED
+  COMMENT_CREATED
+  COMMENT_UPDATED
+  COMMENT_DELETED
+}
+
+
+model Notification {
+
+  id Int @id @default(autoincrement())
+
+  message String
+
+  read Boolean @default(false)
+
+
+  userId Int
+
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+
+
+  createdAt DateTime @default(now())
+
+}
+
+model Label {
+
+  id Int @id @default(autoincrement())
+
+  name String
+
+  issues Issue[]
+
+}
