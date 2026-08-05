@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/flow-desk/src",
-  "tags": [],
+  "tags": ["scope:flow-desk"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -18,6 +18,11 @@
           {
             "glob": "**/*",
             "input": "apps/flow-desk/public"
+          },
+          {
+            "glob": "*.json",
+            "input": "apps/flow-desk/public/i18n",
+            "output": "assets/i18n"
           }
         ],
         "styles": ["apps/flow-desk/src/styles.css"]
@@ -56,6 +61,7 @@
         "development": {
           "buildTarget": "flow-desk:build:development"
         }
+        
       }
     },
     "lint": {

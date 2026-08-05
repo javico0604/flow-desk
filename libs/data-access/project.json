@@ -1,7 +1,7 @@
 {
-  "name": "ui",
+  "name": "api-client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ui/src",
+  "sourceRoot": "libs/data-access/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],

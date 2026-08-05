@@ -21,20 +21,33 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared'],
+              sourceTag: 'scope:flow-desk',
+              onlyDependOnLibsWithTags: [
+                'scope:flow-desk',
+                'scope:shared',
+                'type:core',
+                'type:data',
+              ],
             },
             {
-              sourceTag: 'scope:shop',
-              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared'],
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
             },
             {
               sourceTag: 'scope:api',
               onlyDependOnLibsWithTags: ['scope:api', 'scope:shared'],
             },
             {
+              sourceTag: 'type:core',
+              onlyDependOnLibsWithTags: ['type:core', 'scope:shared'],
+            },
+            {
               sourceTag: 'type:data',
-              onlyDependOnLibsWithTags: ['type:data'],
+              onlyDependOnLibsWithTags: [
+                'type:data',
+                'type:core',
+                'scope:shared',
+              ],
             },
           ],
         },
@@ -52,7 +65,6 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
-    // Override or add rules here
     rules: {},
   },
 ];

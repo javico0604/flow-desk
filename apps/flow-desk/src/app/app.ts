@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule, NzIconModule, TranslocoPipe],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
