@@ -16,16 +16,24 @@ import { CurrentUser } from './decorators/current-user.decorator';
 import { REFRESH_TOKEN_COOKIE } from './constants/auth.constants';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
 import { UserResponseDto } from '../users/dto/user-response.dto';
+import { RegisterResponseDto } from './dto/register-response.dto';
+import { LoginResponseDto } from './dto/login-response.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @ApiOkResponse({
+    type: RegisterResponseDto,
+  })
   @Post('register')
   register(@Body() dto: RegisterDto) {
     return this.authService.register(dto);
   }
 
+  @ApiOkResponse({
+    type: LoginResponseDto,
+  })
   @Post('login')
   async login(
     @Body() dto: LoginDto,
@@ -45,6 +53,9 @@ export class AuthController {
     };
   }
 
+  @ApiOkResponse({
+    type: LoginResponseDto,
+  })
   @Post('refresh')
   refresh(@Req() req: Request) {
     return this.authService.refresh(req.cookies[REFRESH_TOKEN_COOKIE]);

@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "paths": {
       "@flow-desk/core": ["./libs/core/src/index.ts"],
-      "@flow-desk/api-client": ["./libs/data-access/src/index.ts"]
+      "@flow-desk/data-access": ["./libs/data-access/src/index.ts"],
+      "@flow-desk/styles": ["./libs/styles/src/index.ts"],
+      "@flow-desk/styles/mixins": ["./libs/styles/src/lib/mixins.scss"],
+      "@flow-desk/feature": ["./libs/feature/src/index.ts"],
+      "@flow-desk/core-ui": ["./libs/core-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

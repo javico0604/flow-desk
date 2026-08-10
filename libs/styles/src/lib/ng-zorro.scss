@@ -1,0 +1,16 @@
+@import 'ng-zorro-antd/ng-zorro-antd.variable.min.css';
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector {
+  border-radius: var(--border-radius) !important;
+}
+
+:root {
+  --ant-primary-color: var(--color-primary);
+  --ant-primary-color-hover: var(--color-primary);
+  --ant-color-success: var(--color-success);
+  --ant-color-warning: var(--color-warning);
+  --ant-color-error: var(--color-error);
+  --ant-color-info: var(--color-info);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "auth",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feature/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [
+    "type:feature",
+    "scope:flow-desk"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

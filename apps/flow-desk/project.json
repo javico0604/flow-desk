@@ -20,12 +20,30 @@
             "input": "apps/flow-desk/public"
           },
           {
+            "glob": "**/*",
+            "input": "libs/core-ui/src/lib/header/i18n",
+            "output": "/assets/i18n/header"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/feature/src/lib/auth/i18n",
+            "output": "/assets/i18n/auth"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/feature/src/lib/projects/i18n",
+            "output": "/assets/i18n/projects"
+          },
+          {
             "glob": "*.json",
             "input": "apps/flow-desk/public/i18n",
             "output": "assets/i18n"
           }
         ],
-        "styles": ["apps/flow-desk/src/styles.css"]
+        "styles": [
+          "apps/flow-desk/src/styles.css",
+          "libs/styles/src/lib/styles.scss"
+        ]
       },
       "configurations": {
         "production": {

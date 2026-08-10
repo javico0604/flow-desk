@@ -1,0 +1,33 @@
+<div class="header" nz-flex nzJustify="space-between" nzAlign="center">
+    <div nz-flex nzAlign="center" [nzGap]="16">
+        <button nz-button  (click)="emitToggleSidebar()" class="header__icon header__icon--bordered">
+            <nz-icon nzType="menu" nzTheme="outline"/>
+        </button>
+        <span class="header__title">
+            {{ 'header.title' | transloco }}
+        </span>
+    </div>
+
+    <div  nz-flex nzAlign="center" [nzGap]="16">
+        <button class="header__icon" (click)="showNotifications()">
+            <nz-icon nzType="bell" nzTheme="outline" />
+        </button>
+
+        <button
+         nz-popover
+         nzPopoverTrigger="click"
+         nzPopoverPlacement="bottomRight"
+         [nzPopoverContent]="userPopoverContent"
+       >
+         <nz-avatar [nzText]="user()?.initial" />
+       </button>
+   
+       <ng-template #userPopoverContent>
+           <button nz-button nzType="text" (click)="logout()" nz-flex [nzGap]="8">
+                <nz-icon nzType="logout" nzTheme="outline" />
+                {{ 'header.logout' | transloco }}
+           </button>
+       </ng-template>
+    </div>
+    
+</div>

@@ -1,0 +1,8 @@
+{
+  "input": "./libs/data-access/openapi.json",
+  "output": "./libs/data-access/src/lib/api-client",
+  "serviceSuffix": "ApiService",
+  "services": true,
+  "promises": false,
+  "ignoreUnusedModels": true
+}

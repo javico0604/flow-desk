@@ -1,0 +1,9 @@
+:host {
+    .main {
+        overflow-y: auto;
+        background-color: var(--color-background);
+        padding: 1rem;
+        height: calc(100vh - 4rem);
+        width: 100%;
+    }
+}

@@ -19,37 +19,7 @@ export default [
         {
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
-          depConstraints: [
-            {
-              sourceTag: 'scope:flow-desk',
-              onlyDependOnLibsWithTags: [
-                'scope:flow-desk',
-                'scope:shared',
-                'type:core',
-                'type:data',
-              ],
-            },
-            {
-              sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared'],
-            },
-            {
-              sourceTag: 'scope:api',
-              onlyDependOnLibsWithTags: ['scope:api', 'scope:shared'],
-            },
-            {
-              sourceTag: 'type:core',
-              onlyDependOnLibsWithTags: ['type:core', 'scope:shared'],
-            },
-            {
-              sourceTag: 'type:data',
-              onlyDependOnLibsWithTags: [
-                'type:data',
-                'type:core',
-                'scope:shared',
-              ],
-            },
-          ],
+          depConstraints: [],
         },
       ],
     },

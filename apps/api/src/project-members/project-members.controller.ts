@@ -19,6 +19,8 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ProjectMembersService } from './project-members.service';
 import { AddMemberDto } from './dto/add-member.dto';
 import { ProjectMemberResponseDto } from './dto/project-member-response.dto';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { AuthUser } from '../auth/types/auth-user';
 
 
 @ApiTags('Project Members')
@@ -37,11 +39,14 @@ constructor(
 @Post()
 add(
  @Param('projectId', ParseIntPipe) projectId:number,
+ @CurrentUser()
+     user: AuthUser,
  @Body() dto:AddMemberDto
 ){
 
  return this.service.addMember(
    projectId,
+   user.id,
    dto
  );
 
@@ -67,12 +72,15 @@ findAll(
 })
 @Delete(':userId')
 remove(
+   @CurrentUser()
+     user: AuthUser,
  @Param('projectId', ParseIntPipe) projectId:number,
  @Param('userId', ParseIntPipe) userId:number
 ){
 
  return this.service.remove(
    projectId,
+   user.id,
    userId
  );
 

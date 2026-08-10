@@ -1,0 +1,13 @@
+<div class="layout">
+  <lib-header (toggleSidebar)="toggleSidebar()" />
+
+  <div nz-flex>
+    @if (showSidebar()) {
+      <lib-sidebar />
+    }
+
+    <main class="main">
+      <router-outlet />
+    </main>
+  </div>
+</div>

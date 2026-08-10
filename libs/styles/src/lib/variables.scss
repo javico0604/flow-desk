@@ -1,0 +1,32 @@
+:root {
+  // Brand
+  --color-primary: #1677ff;
+  --color-secondary: #722ed1;
+
+  // Estados
+  --color-success: #52c41a;
+  --color-warning: #faad14;
+  --color-error: #ff4d4f;
+  --color-info: #1677ff;
+
+  // Texto
+  --color-text: #1f1f1f;
+  --color-text-secondary: #595959;
+  --color-text-disabled: #bfbfbf;
+
+  // Background
+  --color-background: #f8f8f8;
+  --color-background-secondary: #ffffff;
+
+  // Bordes
+  --color-border: #d9d9d9;
+  --color-border-hover: #4096ff;
+
+  // Otros
+  --color-overlay: rgba(0, 0, 0, 0.45);
+
+  // Dimensiones globales
+  --border-radius: 8px;
+  --border-radius-small: 4px;
+  --border-radius-large: 12px;
+}

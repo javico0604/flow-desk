@@ -1,0 +1,11 @@
+<div nz-flex [nzVertical]="true" [nzGap]="16">
+    <h1 class="title">{{ 'projects.title' | transloco }}</h1>
+    <div nz-flex nzWrap="wrap" [nzGap]="16">
+        @for (project of projectList(); track project) {
+            <button class="project-card" nz-flex [nzVertical]="true" [nzGap]="8" (click)="navigateToProject(project.id)">
+                <span class="project-card__title">{{ project.name }}</span>
+                <span>{{ project.description }}</span>
+            </button>
+        }
+    </div>
+</div>

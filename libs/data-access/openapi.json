@@ -1,0 +1,2511 @@
+{
+"openapi": "3.0.0",
+"paths": {
+"/issue-labels/issues/{issueId}/labels/{labelId}": {
+"post": {
+"operationId": "IssueLabelsController_addLabel",
+"parameters": [
+{
+"name": "issueId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "labelId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LabelResponseDto"
+}
+}
+}
+}
+}
+},
+"tags": [
+"IssueLabels"
+]
+},
+"delete": {
+"operationId": "IssueLabelsController_removeLabel",
+"parameters": [
+{
+"name": "issueId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "labelId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LabelResponseDto"
+}
+}
+}
+}
+}
+},
+"tags": [
+"IssueLabels"
+]
+}
+},
+"/auth/register": {
+"post": {
+"operationId": "AuthController_register",
+"parameters": [],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/RegisterDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/RegisterResponseDto"
+}
+}
+}
+}
+},
+"tags": [
+"Auth"
+]
+}
+},
+"/auth/login": {
+"post": {
+"operationId": "AuthController_login",
+"parameters": [],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LoginDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LoginResponseDto"
+}
+}
+}
+}
+},
+"tags": [
+"Auth"
+]
+}
+},
+"/auth/refresh": {
+"post": {
+"operationId": "AuthController_refresh",
+"parameters": [],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LoginResponseDto"
+}
+}
+}
+}
+},
+"tags": [
+"Auth"
+]
+}
+},
+"/auth/logout": {
+"post": {
+"operationId": "AuthController_logout",
+"parameters": [],
+"responses": {
+"201": {
+"description": ""
+}
+},
+"tags": [
+"Auth"
+]
+}
+},
+"/users/me": {
+"get": {
+"operationId": "UsersController_me",
+"parameters": [],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UserResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Users"
+]
+},
+"put": {
+"operationId": "UsersController_update",
+"parameters": [],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdateUserDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UserResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Users"
+]
+},
+"delete": {
+"operationId": "UsersController_delete",
+"parameters": [],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UserResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Users"
+]
+}
+},
+"/users/search": {
+"get": {
+"operationId": "UsersController_search",
+"parameters": [
+{
+"name": "email",
+"required": true,
+"in": "query",
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Users"
+]
+}
+},
+"/projects": {
+"post": {
+"operationId": "ProjectsController_create",
+"parameters": [],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateProjectDto"
+}
+}
+}
+},
+"responses": {
+"201": {
+"description": ""
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Projects"
+]
+},
+"get": {
+"operationId": "ProjectsController_findAll",
+"parameters": [],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ProjectResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+},
+{
+"bearer": []
+}
+],
+"tags": [
+"Projects"
+]
+}
+},
+"/projects/{id}": {
+"get": {
+"operationId": "ProjectsController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProjectResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+},
+{
+"bearer": []
+}
+],
+"tags": [
+"Projects"
+]
+}
+},
+"/projects/{projectId}/members": {
+"post": {
+"operationId": "ProjectMembersController_add",
+"parameters": [
+{
+"name": "projectId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AddMemberDto"
+}
+}
+}
+},
+"responses": {
+"201": {
+"description": ""
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Project Members"
+]
+},
+"get": {
+"operationId": "ProjectMembersController_findAll",
+"parameters": [
+{
+"name": "projectId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ProjectMemberResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Project Members"
+]
+}
+},
+"/projects/{projectId}/members/{userId}": {
+"delete": {
+"operationId": "ProjectMembersController_remove",
+"parameters": [
+{
+"name": "projectId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "userId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProjectMemberResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Project Members"
+]
+}
+},
+"/projects/{projectId}/boards": {
+"post": {
+"operationId": "BoardsController_create",
+"parameters": [
+{
+"name": "projectId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateBoardDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Boards"
+]
+},
+"get": {
+"operationId": "BoardsController_findAll",
+"parameters": [
+{
+"name": "projectId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/BoardResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Boards"
+]
+}
+},
+"/boards/{id}": {
+"get": {
+"operationId": "BoardsController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Boards"
+]
+},
+"put": {
+"operationId": "BoardsController_update",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdateBoardDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Boards"
+]
+},
+"delete": {
+"operationId": "BoardsController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Boards"
+]
+}
+},
+"/boards/{boardId}/columns": {
+"post": {
+"operationId": "BoardColumnsController_create",
+"parameters": [
+{
+"name": "boardId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateBoardColumnDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+},
+"get": {
+"operationId": "BoardColumnsController_findAll",
+"parameters": [
+{
+"name": "boardId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+}
+},
+"/columns/{id}": {
+"get": {
+"operationId": "BoardColumnsController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+},
+"put": {
+"operationId": "BoardColumnsController_update",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdateBoardColumnDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+},
+"delete": {
+"operationId": "BoardColumnsController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+}
+},
+"/columns/{id}/position": {
+"patch": {
+"operationId": "BoardColumnsController_move",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/MoveColumnDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BoardColumnResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Board Columns"
+]
+}
+},
+"/columns/{columnId}/issues": {
+"post": {
+"operationId": "IssuesController_create",
+"parameters": [
+{
+"name": "columnId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateIssueDto"
+}
+}
+}
+},
+"responses": {
+"201": {
+"description": ""
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+},
+"get": {
+"operationId": "IssuesController_findAll",
+"parameters": [
+{
+"name": "columnId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/{id}": {
+"get": {
+"operationId": "IssuesController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/issues/{id}": {
+"put": {
+"operationId": "IssuesController_update",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdateIssueDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+},
+"delete": {
+"operationId": "IssuesController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/issues/{id}/move": {
+"patch": {
+"operationId": "IssuesController_move",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/MoveIssueDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/issues/{id}/assign": {
+"patch": {
+"operationId": "IssuesController_assign",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AssignIssueDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/issues/{id}/priority": {
+"patch": {
+"operationId": "IssuesController_updatePriority",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdatePriorityDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/{id}/labels": {
+"get": {
+"operationId": "IssuesController_findLabels",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LabelResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/": {
+"get": {
+"operationId": "IssuesController_findAllFiltered",
+"parameters": [
+{
+"name": "search",
+"required": false,
+"in": "query",
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "projectId",
+"required": false,
+"in": "query",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "assigneeId",
+"required": false,
+"in": "query",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "priority",
+"required": false,
+"in": "query",
+"schema": {
+"type": "string",
+"enum": [
+"LOW",
+"MEDIUM",
+"HIGH",
+"CRITICAL"
+]
+}
+},
+{
+"name": "labelId",
+"required": false,
+"in": "query",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/IssueResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Issues"
+]
+}
+},
+"/issues/{issueId}/activity": {
+"get": {
+"operationId": "ActivitiesController_findAll",
+"parameters": [
+{
+"name": "issueId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+},
+{
+"name": "page",
+"required": false,
+"in": "query",
+"schema": {
+"default": 1,
+"type": "number"
+}
+},
+{
+"name": "limit",
+"required": false,
+"in": "query",
+"schema": {
+"default": 20,
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActivityResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Activities"
+]
+}
+},
+"/activity/{id}": {
+"get": {
+"operationId": "ActivitiesController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ActivityResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Activities"
+]
+}
+},
+"/notifications": {
+"get": {
+"operationId": "NotificationsController_findAll",
+"parameters": [],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/NotificationResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Notifications"
+]
+}
+},
+"/notifications/{id}/read": {
+"patch": {
+"operationId": "NotificationsController_read",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/NotificationResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Notifications"
+]
+}
+},
+"/notifications/{id}": {
+"delete": {
+"operationId": "NotificationsController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/NotificationResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Notifications"
+]
+}
+},
+"/issues/{issueId}/comments": {
+"post": {
+"operationId": "CommentsController_create",
+"parameters": [
+{
+"name": "issueId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateCommentDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CommentResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Comments"
+]
+},
+"get": {
+"operationId": "CommentsController_findAll",
+"parameters": [
+{
+"name": "issueId",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/CommentResponseDto"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Comments"
+]
+}
+},
+"/comments/{id}": {
+"get": {
+"operationId": "CommentsController_findOne",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CommentResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Comments"
+]
+},
+"put": {
+"operationId": "CommentsController_update",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UpdateCommentDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CommentResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Comments"
+]
+},
+"delete": {
+"operationId": "CommentsController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CommentResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Comments"
+]
+}
+},
+"/labels": {
+"post": {
+"operationId": "LabelsController_create",
+"parameters": [],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/CreateLabelDto"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LabelResponseDto"
+}
+}
+}
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Labels"
+]
+},
+"get": {
+"operationId": "LabelsController_findAll",
+"parameters": [],
+"responses": {
+"200": {
+"description": ""
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Labels"
+]
+}
+},
+"/labels/{id}": {
+"delete": {
+"operationId": "LabelsController_remove",
+"parameters": [
+{
+"name": "id",
+"required": true,
+"in": "path",
+"schema": {
+"type": "number"
+}
+}
+],
+"responses": {
+"200": {
+"description": ""
+}
+},
+"security": [
+{
+"bearer": []
+}
+],
+"tags": [
+"Labels"
+]
+}
+}
+},
+"info": {
+"title": "Flow Desk API",
+"description": "Backend Jira clone",
+"version": "1.0",
+"contact": {}
+},
+"tags": [],
+"servers": [],
+"components": {
+"securitySchemes": {
+"bearer": {
+"scheme": "bearer",
+"bearerFormat": "JWT",
+"type": "http"
+}
+},
+"schemas": {
+"LabelResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+}
+},
+"required": [
+"id",
+"name"
+]
+},
+"RegisterDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+},
+"email": {
+"type": "string"
+},
+"password": {
+"type": "string"
+}
+},
+"required": [
+"name",
+"email",
+"password"
+]
+},
+"RegisterResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"email": {
+"type": "string"
+},
+"password": {
+"type": "string"
+}
+},
+"required": [
+"id",
+"email",
+"password"
+]
+},
+"LoginDto": {
+"type": "object",
+"properties": {
+"email": {
+"type": "string"
+},
+"password": {
+"type": "string"
+}
+},
+"required": [
+"email",
+"password"
+]
+},
+"LoginResponseDto": {
+"type": "object",
+"properties": {
+"accessToken": {
+"type": "string"
+}
+},
+"required": [
+"accessToken"
+]
+},
+"UserResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+},
+"email": {
+"type": "string"
+}
+},
+"required": [
+"id",
+"name",
+"email"
+]
+},
+"UpdateUserDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+}
+},
+"required": [
+"name"
+]
+},
+"CreateProjectDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+},
+"description": {
+"type": "string"
+}
+},
+"required": [
+"name"
+]
+},
+"ProjectResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"ownerId": {
+"type": "number"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"updatedAt": {
+"format": "date-time",
+"type": "string"
+}
+},
+"required": [
+"id",
+"name",
+"ownerId",
+"createdAt",
+"updatedAt"
+]
+},
+"AddMemberDto": {
+"type": "object",
+"properties": {
+"userId": {
+"type": "number"
+}
+},
+"required": [
+"userId"
+]
+},
+"UserMemberDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+},
+"email": {
+"type": "string"
+}
+},
+"required": [
+"id",
+"name",
+"email"
+]
+},
+"ProjectMemberResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"projectId": {
+"type": "number"
+},
+"userId": {
+"type": "number"
+},
+"role": {
+"type": "string",
+"enum": [
+"OWNER",
+"ADMIN",
+"MEMBER"
+]
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"user": {
+"$ref": "#/components/schemas/UserMemberDto"
+}
+},
+"required": [
+"id",
+"projectId",
+"userId",
+"role",
+"createdAt",
+"user"
+]
+},
+"CreateBoardDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+}
+},
+"required": [
+"name"
+]
+},
+"BoardResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+},
+"projectId": {
+"type": "number"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"updatedAt": {
+"format": "date-time",
+"type": "string"
+}
+},
+"required": [
+"id",
+"name",
+"projectId",
+"createdAt",
+"updatedAt"
+]
+},
+"UpdateBoardDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+}
+}
+},
+"CreateBoardColumnDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+},
+"position": {
+"type": "number"
+}
+},
+"required": [
+"name",
+"position"
+]
+},
+"BoardColumnResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"name": {
+"type": "string"
+},
+"position": {
+"type": "number"
+},
+"boardId": {
+"type": "number"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"updatedAt": {
+"format": "date-time",
+"type": "string"
+}
+},
+"required": [
+"id",
+"name",
+"position",
+"boardId",
+"createdAt",
+"updatedAt"
+]
+},
+"UpdateBoardColumnDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+},
+"position": {
+"type": "number"
+}
+}
+},
+"MoveColumnDto": {
+"type": "object",
+"properties": {
+"position": {
+"type": "number"
+}
+},
+"required": [
+"position"
+]
+},
+"CreateIssueDto": {
+"type": "object",
+"properties": {
+"title": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"priority": {
+"type": "string",
+"enum": [
+"LOW",
+"MEDIUM",
+"HIGH",
+"CRITICAL"
+]
+},
+"position": {
+"type": "number"
+},
+"assigneeId": {
+"type": "number"
+}
+},
+"required": [
+"title",
+"priority",
+"position"
+]
+},
+"IssueResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"title": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"priority": {
+"type": "string",
+"enum": [
+"LOW",
+"MEDIUM",
+"HIGH",
+"CRITICAL"
+]
+},
+"position": {
+"type": "number"
+},
+"projectId": {
+"type": "number"
+},
+"boardId": {
+"type": "number"
+},
+"columnId": {
+"type": "number"
+},
+"creatorId": {
+"type": "number"
+},
+"assigneeId": {
+"type": "number"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"updatedAt": {
+"format": "date-time",
+"type": "string"
+}
+},
+"required": [
+"id",
+"title",
+"priority",
+"position",
+"projectId",
+"boardId",
+"columnId",
+"creatorId",
+"createdAt",
+"updatedAt"
+]
+},
+"UpdateIssueDto": {
+"type": "object",
+"properties": {
+"title": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"priority": {
+"type": "string",
+"enum": [
+"LOW",
+"MEDIUM",
+"HIGH",
+"CRITICAL"
+]
+},
+"position": {
+"type": "number"
+},
+"assigneeId": {
+"type": "number"
+}
+}
+},
+"MoveIssueDto": {
+"type": "object",
+"properties": {
+"columnId": {
+"type": "number"
+},
+"position": {
+"type": "number"
+}
+},
+"required": [
+"columnId",
+"position"
+]
+},
+"AssignIssueDto": {
+"type": "object",
+"properties": {
+"assigneeId": {
+"type": "number"
+}
+},
+"required": [
+"assigneeId"
+]
+},
+"UpdatePriorityDto": {
+"type": "object",
+"properties": {
+"priority": {
+"type": "string",
+"enum": [
+"LOW",
+"MEDIUM",
+"HIGH",
+"CRITICAL"
+]
+}
+},
+"required": [
+"priority"
+]
+},
+"ActivityResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"action": {
+"type": "string",
+"enum": [
+"ISSUE_CREATED",
+"ISSUE_UPDATED",
+"ISSUE_MOVED",
+"ISSUE_ASSIGNED",
+"ISSUE_DELETED",
+"COMMENT_CREATED",
+"COMMENT_UPDATED",
+"COMMENT_DELETED"
+]
+},
+"metadata": {
+"type": "object"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"user": {
+"type": "object"
+}
+},
+"required": [
+"id",
+"action",
+"createdAt",
+"user"
+]
+},
+"NotificationResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"message": {
+"type": "string"
+},
+"read": {
+"type": "boolean"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+}
+},
+"required": [
+"id",
+"message",
+"read",
+"createdAt"
+]
+},
+"CreateCommentDto": {
+"type": "object",
+"properties": {
+"content": {
+"type": "string"
+}
+},
+"required": [
+"content"
+]
+},
+"CommentResponseDto": {
+"type": "object",
+"properties": {
+"id": {
+"type": "number"
+},
+"content": {
+"type": "string"
+},
+"issueId": {
+"type": "number"
+},
+"userId": {
+"type": "number"
+},
+"createdAt": {
+"format": "date-time",
+"type": "string"
+},
+"updatedAt": {
+"format": "date-time",
+"type": "string"
+},
+"user": {
+"type": "object"
+}
+},
+"required": [
+"id",
+"content",
+"issueId",
+"userId",
+"createdAt",
+"updatedAt"
+]
+},
+"UpdateCommentDto": {
+"type": "object",
+"properties": {
+"content": {
+"type": "string"
+}
+},
+"required": [
+"content"
+]
+},
+"CreateLabelDto": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+}
+},
+"required": [
+"name"
+]
+}
+}
+}
+}

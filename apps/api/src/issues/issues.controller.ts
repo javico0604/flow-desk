@@ -42,48 +42,49 @@ export class IssuesController {
     type: [IssueResponseDto],
   })
   @Get('columns/:columnId/issues')
-  findAll(@Param('columnId', ParseIntPipe) columnId: number) {
-    return this.issuesService.findAll(columnId);
+  findAll(@Param('columnId', ParseIntPipe) columnId: number,  @CurrentUser()
+     user: AuthUser,) {
+    return this.issuesService.findAll(columnId, user.id);
   }
 
   @ApiOkResponse({
     type: IssueResponseDto,
   })
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.issuesService.findOne(id);
+  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: AuthUser) {
+    return this.issuesService.findOne(id, user.id);
   }
 
   @ApiOkResponse({
     type: [IssueResponseDto],
   })
   @Put('issues/:id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateIssueDto) {
-    return this.issuesService.update(id, dto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateIssueDto, @CurrentUser() user: AuthUser) {
+    return this.issuesService.update(id, user.id, dto);
   }
 
   @ApiOkResponse({
     type: [IssueResponseDto],
   })
   @Delete('issues/:id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.issuesService.remove(id);
+  remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: AuthUser) {
+    return this.issuesService.remove(id, user.id);
   }
 
   @ApiOkResponse({
     type: [IssueResponseDto],
   })
   @Patch('issues/:id/move')
-  move(@Param('id', ParseIntPipe) id: number, @Body() dto: MoveIssueDto) {
-    return this.issuesService.move(id, dto);
+  move(@Param('id', ParseIntPipe) id: number, @Body() dto: MoveIssueDto, @CurrentUser() user: AuthUser) {
+    return this.issuesService.move(id, user.id, dto);
   }
 
   @ApiOkResponse({
     type: [IssueResponseDto],
   })
   @Patch('issues/:id/assign')
-  assign(@Param('id', ParseIntPipe) id: number, @Body() dto: AssignIssueDto) {
-    return this.issuesService.assign(id, dto);
+  assign(@Param('id', ParseIntPipe) id: number, @Body() dto: AssignIssueDto, @CurrentUser() user: AuthUser) {
+    return this.issuesService.assign(id, user.id, dto);
   }
 
   @ApiOkResponse({
@@ -93,8 +94,9 @@ export class IssuesController {
   updatePriority(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdatePriorityDto,
+    @CurrentUser() user: AuthUser
   ) {
-    return this.issuesService.updatePriority(id, dto);
+    return this.issuesService.updatePriority(id, user.id, dto);
   }
 
   @ApiOkResponse({
