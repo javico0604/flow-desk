@@ -3,12 +3,12 @@ import { email, form, FormField, FormRoot, required } from '@angular/forms/signa
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
-import {
-  provideTranslocoScope,
-  TranslocoPipe,
-} from '@jsverse/transloco';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { AuthService } from '@flow-desk/data-access';
 import { Router } from '@angular/router';
+import { TranslateService } from '@flow-desk/core';
+import { I18N_REGISTER } from './i18n/i18n-register';
+import { take } from 'rxjs';
 
 interface RegisterData {
   name: string;
@@ -26,16 +26,18 @@ interface RegisterData {
     NzFlexModule,
     TranslocoPipe,
   ],
-  providers: [
-    provideTranslocoScope({
-      scope: 'auth',
-      alias: 'auth',
-    }),
-  ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
 export class RegisterComponent {
+  private translateService = inject(TranslateService);
+
+  constructor() {
+    this.translateService.setTranslation(
+      'register',
+      I18N_REGISTER
+    )
+  }
   public registerModel = signal<RegisterData>({
     name: '',
     email: '',
@@ -67,7 +69,7 @@ export class RegisterComponent {
   private router = inject(Router);
 
   async onSubmit(data: RegisterData) {
-    return this.authService.register(data).subscribe(() => {
+    return this.authService.register(data).pipe(take(1)).subscribe(() => {
       this.router.navigate(['/auth/login']);
     });
   }

@@ -6,7 +6,6 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@flow-desk/feature').then((m) => m.authRoutes),
   },
-
   {
     path: '',
     loadComponent: () =>
@@ -14,6 +13,11 @@ export const appRoutes: Route[] = [
         (m) => m.RouterOutletComponent
       ),
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'projects',
+      },
       {
         path: 'projects',
         loadChildren: () =>
@@ -23,7 +27,6 @@ export const appRoutes: Route[] = [
       },
     ],
   },
-
   {
     path: '**',
     redirectTo: '/projects',

@@ -66,11 +66,11 @@ findAll(
 @Get(':id')
 findOne(
   @CurrentUser() user: AuthUser,
-  @Param('id') id:number
+  @Param('id') id:string
 ){
-
+  const projectId = Number(id);
   return this.projectsService.findOne(
-    id,
+    projectId,
     user.id
   );
 

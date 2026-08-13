@@ -1,20 +1,20 @@
 <div nz-flex [nzVertical]="true" [nzGap]="16">
-    <h1>{{ 'auth.register.title' | transloco }}</h1>
+    <h1>{{ 'register.register.title' | transloco }}</h1>
     
     <form nz-flex [nzVertical]="true" [nzGap]="16" [formRoot]="registerForm">
         <div nz-flex [nzVertical]="true" [nzGap]="8">
-            <span>{{ 'auth.register.name' | transloco }}</span>
+            <span>{{ 'register.register.name' | transloco }}</span>
             <input nz-input [formField]="registerForm.name"/>
         </div>
         <div nz-flex [nzVertical]="true" [nzGap]="8">
-            <span>{{ 'auth.register.email' | transloco }}</span>
+            <span>{{ 'register.register.email' | transloco }}</span>
             <input nz-input [formField]="registerForm.email"/>
         </div>
         <div nz-flex [nzVertical]="true" [nzGap]="8">
-            <span>{{ 'auth.register.password' | transloco }}</span>
+            <span>{{ 'register.register.password' | transloco }}</span>
             <input nz-input type="password" [formField]="registerForm.password"/>
         </div>
         
-        <button nz-button nzType="primary" type="submit" [disabled]="registerForm().invalid()">{{ 'auth.register.submit' | transloco }}</button>
+        <button nz-button nzType="primary" type="submit" [disabled]="registerForm().invalid()">{{ 'register.register.submit' | transloco }}</button>
     </form>
 </div>

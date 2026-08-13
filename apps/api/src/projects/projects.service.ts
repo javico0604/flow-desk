@@ -20,12 +20,12 @@ constructor(
 
 
 
-create(
+async create(
  userId:number,
  dto:CreateProjectDto
 ){
 
- return this.prisma.project.create({
+ const project = await this.prisma.project.create({
 
    data:{
      name:dto.name,
@@ -34,6 +34,16 @@ create(
    }
 
  });
+
+ await this.prisma.projectMember.create({
+  data: {
+    projectId: project.id,
+    role: 'OWNER',
+    userId: userId
+  }
+ })
+
+ return project
 
 }
 

@@ -1,8 +1,5 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
-import {
-  provideTranslocoScope,
-  TranslocoPipe,
-} from '@jsverse/transloco';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -10,6 +7,9 @@ import { UserService, User, AuthService } from '@flow-desk/data-access';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { Router } from '@angular/router';
+import { TranslateService } from '@flow-desk/core';
+import { I18N_HEADER } from './i18n/i18n-header';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'lib-header',
@@ -23,12 +23,6 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
-  providers: [
-    provideTranslocoScope({
-      scope: 'header',
-      alias: 'header',
-    }),
-  ],
 })
 export class Header implements OnInit {
   public toggleSidebar = output<void>();
@@ -38,6 +32,14 @@ export class Header implements OnInit {
 
   private userService = inject(UserService);
   private authService = inject(AuthService);
+  private translateService = inject(TranslateService);
+
+  constructor() {
+    this.translateService.setTranslation(
+      'header',
+      I18N_HEADER
+    )
+  }
 
   ngOnInit(): void {
     this.user = this.userService.currentUser;
@@ -48,13 +50,13 @@ export class Header implements OnInit {
   }
 
   public logout(): void {
-    this.authService.logout().subscribe(() => {
+    this.authService.logout().pipe(take(1)).subscribe(() => {
       this.userService.currentUser.set(null);
       this.router.navigate(['/login']);
     });
   }
 
   public showNotifications() {
-    
+    // TODO add notification  
   }
 }

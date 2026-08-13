@@ -6,6 +6,14 @@
   border-radius: var(--border-radius) !important;
 }
 
+.ant-btn {
+  height: auto;
+}
+
+.ant-avatar {
+  background-color: var(--color-primary);
+}
+
 :root {
   --ant-primary-color: var(--color-primary);
   --ant-primary-color-hover: var(--color-primary);

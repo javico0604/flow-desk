@@ -12,6 +12,13 @@ export const projectsRoutes: Route[] = [
       ),
   },
   {
+    path: ':projectId',
+    loadComponent: () =>
+      import('./project/project').then(
+        (m) => m.ProjectComponent,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'projects',
   },
